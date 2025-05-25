@@ -42,4 +42,10 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
 app-example
