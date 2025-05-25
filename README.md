@@ -1,50 +1,123 @@
-# Welcome to your Expo app 👋
+# Instagram Stories Feature
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a React Native Expo app that implements a simplified version of Instagram Stories.
 
-## Get started
+## Features
 
-1. Install dependencies
+- 📱 **Mobile-first design** - Optimized specifically for mobile devices
+- 🖼️ **Image stories** - View a collection of image-based stories
+- 📊 **External data source** - Stories are loaded from external JSON data
+- 🎯 **Tap navigation** - Tap left/right sides to navigate between stories
+- ⏱️ **Auto-advance** - Stories automatically advance after 5 seconds
+- 📈 **Progress indicators** - Visual progress bars show story advancement
+- 🎨 **Smooth animations** - Fade transitions and progress animations
 
+## Project Structure
+
+```
+components/
+├── ProgressBar.tsx      # Individual story progress indicator
+├── StoriesList.tsx      # Horizontal scrollable list of story avatars
+├── StoryHeader.tsx      # Story viewer header with user info and close button
+├── StoryItem.tsx        # Individual story avatar item in the list
+├── StoryViewer.tsx      # Full-screen story viewer modal
+└── TapZones.tsx         # Invisible tap zones for story navigation
+
+constants/
+├── StoryConfig.ts       # Configuration constants for stories
+└── Styles.ts            # Shared style definitions
+
+data/
+└── stories.ts           # Story data with TypeScript interfaces
+
+hooks/
+└── useStoryNavigation.ts # Custom hook for story navigation logic
+```
+
+## Getting Started
+
+1. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Start the app
-
+2. Start the development server:
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Open the app on your device using:
+   - [Expo Go](https://expo.dev/go) app (scan QR code)
+   - iOS Simulator
+   - Android Emulator
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## How to Use
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. **View Stories**: Tap on any user avatar in the horizontal list to start viewing their stories
+2. **Navigate**: 
+   - Tap the right side of the screen to go to the next story
+   - Tap the left side to go to the previous story
+   - Close by tapping the X button
+3. **Auto-advance**: Stories automatically move to the next one after 5 seconds
+4. **Progress**: Watch the progress bars at the top to see story advancement
 
-## Get a fresh project
+## Customization
 
-When you're ready, run:
+### Adding New Stories
 
-```bash
-npm run reset-project
+Edit `data/stories.ts` to add new users and their stories:
+
+```typescript
+{
+  id: 6,
+  username: 'NewUser',
+  avatar: 'https://example.com/avatar.jpg',
+  stories: [
+    { id: 1, image: 'https://example.com/story1.jpg' },
+    { id: 2, image: 'https://example.com/story2.jpg' },
+  ]
+}
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Modifying Story Duration
 
-## Learn more
+Change the auto-advance timing in `constants/StoryConfig.ts`:
 
-To learn more about developing your project with Expo, look at the following resources:
+```typescript
+STORY_DURATION: 5000, // milliseconds
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Styling
 
-## Join the community
+All visual constants are centralized in:
+- `constants/StoryConfig.ts` - Functional configurations
+- `constants/Styles.ts` - Reusable style definitions
 
-Join our community of developers creating universal apps.
+## Architecture
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This app follows a modular architecture with:
+
+- **Separation of Concerns**: Each component has a single responsibility
+- **Custom Hooks**: Business logic extracted into reusable hooks
+- **TypeScript**: Full type safety with interfaces for data structures
+- **Configuration-driven**: Easy customization through config files
+- **Clean Code**: Focused, maintainable components without boilerplate
+
+## Tech Stack
+
+- **React Native** - Mobile app framework
+- **Expo** - Development and build platform
+- **TypeScript** - Type safety and better developer experience
+- **React Navigation** - Navigation (minimal setup for single screen app)
+
+## Requirements Met
+
+✅ Mobile-only design (no desktop support)  
+✅ Horizontal scrollable story list  
+✅ External data source (JSON file)  
+✅ Story viewer with full-screen experience  
+✅ Manual navigation (tap left/right)  
+✅ Auto-advance after 5 seconds  
+✅ Progress indicators  
+✅ No external libraries for core functionality  
+✅ Smooth transitions and animations
